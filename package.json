@@ -1,0 +1,50 @@
+{
+  "name": "classyfier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server/",
+    "server": "nodemon --exec npx babel-node server/",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "babel-plugin-styled-components": "^1.11.1",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.20",
+    "mv": "^2.1.1",
+    "next": "^9.5.5",
+    "next-page-transitions": "^1.0.0-beta.2",
+    "next-redux-wrapper": "^3.0.0-alpha.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.1.0",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.12.1"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "arrowParens": "avoid"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "/client/*",
+      "data.json"
+    ]
+  }
+}
