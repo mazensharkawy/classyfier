@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server/",
+    "dev": "npx babel-node server/",
     "server": "nodemon --exec npx babel-node server/",
     "build": "next build",
     "start": "next start"

@@ -1,2 +1,2 @@
-export { loadProjects } from "./projects";
+export { loadProjects, selectProject, toClassesPage } from "./projects";
 

@@ -2,7 +2,8 @@ import _ from "lodash";
 import { Component, default as React } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { LARGE_SCREEN_BREAK_POINT, PURPLE } from "../../config";
+import { selectProject } from "../../actions";
+import { LARGE_SCREEN_BREAK_POINT, PRIMARY_COLOR } from "../../config";
 import Input from "../components/DefaultInput";
 
 const Container = styled.div`
@@ -28,7 +29,7 @@ const Project = styled.a`
 const Button = styled.button`
   color: white;
   cursor: pointer;
-  background: ${PURPLE};
+  background: ${PRIMARY_COLOR};
   text-align: center;
   border-radius: 10px;
   padding: 1.2vw 1.2vw;
@@ -50,7 +51,7 @@ class ProjectsContainer extends Component {
   state = { newProjectName: "", error: null };
   handleChange = event => this.setState({ newProjectName: event.target.value });
   createProject = () => {
-    const { projects, selectProject, next } = this.props;
+    const { projects, selectProject } = this.props;
     const { newProjectName } = this.state;
     if (!/^[ A-Za-z0-9_@.#&+-]*$/.test(newProjectName)) {
       this.setState({ error: "Invalid character(s)" });
@@ -63,7 +64,6 @@ class ProjectsContainer extends Component {
   render = () => {
     const { selectProject, projects } = this.props;
     const { newProjectName, error } = this.state;
-    console.log({ projects });
     return (
       <Container>
         {projects && projects.error && <p>Error loading Projects</p>}
@@ -91,9 +91,9 @@ class ProjectsContainer extends Component {
     );
   };
 }
-const mapStateToProps = (state) => {
-  console.log({state})
+const mapStateToProps = state => {
+  console.log({ state });
   return { projects: state.projects.projects };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectProject };
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsContainer);
