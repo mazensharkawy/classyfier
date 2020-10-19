@@ -1,2 +1,4 @@
 node_modules
 .next
+server/keys.js
+server/localconfig.js

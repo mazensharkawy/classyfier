@@ -3,7 +3,8 @@ import { default as fs, promises as fsPromises } from "fs";
 import _ from "lodash";
 import mv from "mv";
 import path from "path";
-
+import tokens from "./tokens";
+import user from "./user";
 const router = express.Router();
 
 const dev = process.env.NODE_ENV !== "production";
@@ -90,7 +91,7 @@ const loadProjectImages = async projectName => {
     };
     return imagesList;
   } catch (error) {
-    console.log(error);
+    console.log({ error });
     return [];
   }
 };
@@ -181,6 +182,10 @@ const discardImage = async (req, res) => {
 //     callback("Error moving file")
 //   }
 // }
+
+router.use("/user", user);
+router.use("/tokens", tokens);
+
 router.get("/projects", getProjectsAvailable);
 router.post("/create-project", createProject);
 router.get("/request-image/:project", requestImage);
