@@ -1,7 +1,7 @@
 import React from "react"
+import HomePage from "../src/containers/HomePage"
+// import MainAppContainer from "../src/containers/MainAppContainer"
 const Index = () => (
-  <div>
-    <p>Hello Next.js, this is your friend Brian from logrocket</p>
-  </div>
+    <HomePage/>
 )
 export default Index

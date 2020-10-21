@@ -1,6 +1,11 @@
 const dev = process.env.NODE_ENV !== "production";
 const SERVER_URL = dev ? "http://localhost:3000" : "SERVER_URL"
 export default class Server {
+  static async signout() {
+    return this.send({
+      url: `${SERVER_URL}/api/auth/signout`
+    });
+  }
   static createProject({ projectName, classes }) {
     return this.send({
       url: `${SERVER_URL}/api/create-project`,

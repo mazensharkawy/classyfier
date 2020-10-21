@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx babel-node server/",
-    "server": "nodemon --exec npx babel-node server/",
+    "server": "nodemon --watch server/ --exec npx babel-node server/ ",
     "build": "next build",
     "start": "next start"
   },
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/preset-env": "^7.11.5",
+    "@zeit/next-css": "^1.0.1",
     "babel-plugin-styled-components": "^1.11.1",
     "babel-preset-env": "^1.7.0",
     "bcrypt": "^5.0.0",
@@ -21,10 +22,13 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "mongodb": "^3.6.2",
     "mv": "^2.1.1",
     "next": "^9.5.5",
+    "next-images": "^1.6.0",
     "next-page-transitions": "^1.0.0-beta.2",
+    "next-progressbar": "^1.0.0",
     "next-redux-wrapper": "^3.0.0-alpha.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -33,6 +37,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.1.0",
+    "style-loader": "^2.0.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
@@ -47,9 +52,10 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "/client/*",
       "data.json",
-      "/src/*"
+      "/src",
+      "/actions",
+      "/pages"
     ]
   }
 }

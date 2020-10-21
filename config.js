@@ -19,7 +19,8 @@ export const TABLET_CONDITION = `(max-width: ${TABLET_BREAK_POINT}) and (min-wid
 export const LARGE_SCREEN_BREAK_POINT = "1900px";
 export const NORMAL_SCREEN_WIDTH = "90vw";
 export const LARGE_SCREEN_WIDTH = "1728px";
-export const PRIMARY_COLOR = "#604cd5";
+export const PRIMARY_COLOR = "#656565";
+export const HIGHLIGHT_COLOR = "#FF9933";
 export const LIGHT_GREY = "#e0e0e0";
 
 export const DIV_FLEX = styled.div`

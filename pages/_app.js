@@ -1,17 +1,16 @@
 import _ from "lodash";
 import { PageTransition } from "next-page-transitions";
 import App from "next/app";
-import Router from "next/router";
 import React from "react";
 import { Provider } from "react-redux";
 // import Loader from "../src/components/Loader/Loader";
-import * as gtag from "../lib/gt";
+// import * as gtag from "../lib/gt";
 import withReduxStore from "../lib/with-redux-store";
 // import ErrorPage from "../src/containers/ErrorPage";
 //import Router from 'next/router'
 //Router.events.on('routeChangeStart', ()=>console.log("start"));
 //Router.events.on('routeChangeComplete', ()=>console.log("done"));
-Router.events.on("routeChangeComplete", url => gtag.pageview(url));
+// Router.events.on("routeChangeComplete", url => gtag.pageview(url));
 
 class MyApp extends App {
   componentDidMount() {
