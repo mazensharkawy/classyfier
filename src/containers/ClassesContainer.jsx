@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import Input from "../components/DefaultInput";
 import Server from "../server";
@@ -50,7 +51,7 @@ class ClassesContainer extends Component {
   renderClass = classItem => <ClassItem>{classItem}</ClassItem>;
   createProject = () => {
     const { selectedProject } = this.props;
-    const { projectName, classes } = this.state;
+    const { classes } = this.state;
     Server.createProject({ projectName: selectedProject, classes });
     this.props.next();
   };
@@ -74,4 +75,11 @@ class ClassesContainer extends Component {
   }
 }
 
-export default ClassesContainer;
+const mapStateToProps = ({ projects }) => {
+  return {
+    projects: projects.projects,
+    selectedProject: projects.selectedProject
+  };
+};
+const mapDispatchToProps = {};
+export default connect(mapStateToProps, mapDispatchToProps)(ClassesContainer);
