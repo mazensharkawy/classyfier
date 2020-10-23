@@ -1,4 +1,5 @@
 import _ from "lodash";
+import Router from "next/router";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -52,8 +53,9 @@ class ClassesContainer extends Component {
   createProject = () => {
     const { selectedProject } = this.props;
     const { classes } = this.state;
-    Server.createProject({ projectName: selectedProject, classes });
-    this.props.next();
+    Server.createProject({ projectName: selectedProject, classes }).then(
+      Router.push(`/classifier/${selectedProject}`)
+    );
   };
   render() {
     const { newClassName, classes, inputError } = this.state;

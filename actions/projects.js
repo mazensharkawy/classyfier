@@ -1,6 +1,7 @@
 import _ from "lodash";
-import Server from "../src/server";
 import * as actiontypes from "./actiontypes";
+import Router from "next/router";
+import Server from "../src/server";
 
 export const loadProjects = () => {
   return dispatch => {
@@ -36,7 +37,7 @@ export const selectProject = selectedProject => {
     const projects = _.get(getState(), "projects.projects");
     dispatch(setSelectedProject(_.trim(selectedProject)));
     if (_.includes(_.keys(projects), selectedProject)) {
-      // redirect
+      Router.push(`/classifier/${selectedProject}`);
     } else dispatch(toClassesPage());
   };
 };
