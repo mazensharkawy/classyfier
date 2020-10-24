@@ -1,5 +1,4 @@
 import _ from "lodash";
-import Router from "next/router";
 import Server from "../src/server";
 import * as actionTypes from "./actiontypes";
 
@@ -8,10 +7,10 @@ export const loadNewImage = payload => {
 };
 export const requestNewImage = () => {
   return (dispatch, getState) => {
-    const { selectedProject } = _.get(getState(), "classifier");
-    return Server.requestNewImage(selectedProject).then(() =>
-      dispatch(loadNewImage)
-    );
+    const { selectedProject } = _.get(getState(), "projects");
+    return Server.requestNewImage(selectedProject).then(res => {
+      dispatch(loadNewImage({ ...res }));
+    });
   };
 };
 

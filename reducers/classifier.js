@@ -1,9 +1,10 @@
 import * as actionTypes from "../actions/actiontypes";
 
 const initialState = {
-  selectedClass: null,
+  selectedClass: "null",
   img: null,
-  classes: []
+  classes: [],
+  imagesRemaining: 0
 };
 
 const reducer = (state = initialState, action) => {

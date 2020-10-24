@@ -81,7 +81,14 @@ class projects extends React.Component {
     return {};
   };
   render() {
-    const { classify, selectClass, discard, img, classes } = this.props;
+    const {
+      classify,
+      selectClass,
+      selectedClass,
+      discard,
+      img,
+      classes
+    } = this.props;
     return (
       <Container>
         <Img>
@@ -116,7 +123,8 @@ class projects extends React.Component {
 
 const mapStateToProps = ({ classifier }) => ({
   img: classifier.img,
-  classes: classifier.classes
+  classes: classifier.classes,
+  selectedClass: classifier.selectedClass
 });
 const mapDispatchToProps = {
   classify,
