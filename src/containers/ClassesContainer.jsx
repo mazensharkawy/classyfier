@@ -50,12 +50,18 @@ class ClassesContainer extends Component {
   };
   handleChange = event => this.setState({ newClassName: event.target.value });
   renderClass = classItem => <ClassItem>{classItem}</ClassItem>;
-  createProject = () => {
+  createProject = async () => {
     const { selectedProject } = this.props;
     const { classes } = this.state;
-    Server.createProject({ projectName: selectedProject, classes }).then(
-      Router.push(`/classifier/${selectedProject}`)
-    );
+    try {
+      let response = await Server.createProject({
+        projectName: selectedProject,
+        classes
+      });
+      Router.push(`/classifier/${selectedProject}`);
+    } catch (e) {
+      console.log(e);
+    }
   };
   render() {
     const { newClassName, classes, inputError } = this.state;
