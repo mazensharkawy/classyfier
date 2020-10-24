@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actiontypes";
 
 const initialState = {
-  selectedClass: "null",
+  selectedClass: null,
   img: null,
   classes: [],
   imagesRemaining: 0
