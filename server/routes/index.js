@@ -29,8 +29,10 @@ const moveAsync = (image, newPath, options = {}) => {
     });
   });
 };
-const findAndRemove = (project, value) => {
+const findAndRemove = (project, imgName) => {
   const arr = imagesObject[project];
+  let value = imgName.split("/");
+  value = value[value.length - 1];
   var index = arr.indexOf(value);
   if (index > -1) {
     arr.splice(index, 1);
@@ -139,8 +141,8 @@ const classifyImage = async (req, res) => {
 const discardImage = async (req, res) => {
   const { project, image } = req.body;
   try {
-    await fsPromises.unlink(image);
-    findAndRemove(project, imgName);
+    await fsPromises.unlink(path.join(IMAGES_BASE, image));
+    findAndRemove(project, image);
   } catch (error) {
     res.status(500).send();
   }

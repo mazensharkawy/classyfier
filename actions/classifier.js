@@ -33,11 +33,12 @@ export const selectClass = payload => {
     payload
   };
 };
-export const discard = () => {
+export const discard = img => {
   return (dispatch, getState) => {
-    const { selectedProject, img } = _.get(getState(), "classifier");
-    return Server.discardImage({ project: selectedProject, image: img }).then(
-      dispatch(loadNewImage)
-    );
+    const { selectedProject } = _.get(getState(), "projects");
+    return Server.discardImage({
+      project: selectedProject,
+      image: img
+    }).then(res => dispatch(loadNewImage({ ...res })));
   };
 };

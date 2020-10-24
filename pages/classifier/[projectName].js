@@ -104,14 +104,14 @@ class Classifier extends React.Component {
                     name="classes"
                     value={classOption}
                     checked={selectedClass === classOption}
-                    onChange={selectClass}
+                    onChange={e => selectClass(e.target.value)}
                   />
                   {_.upperFirst(classOption)}
                 </label>
               ))}
             </div>
             <ButtonContainer>
-              <Button onClick={discard}>Discard Image</Button>
+              <Button onClick={() => discard(img)}>Discard Image</Button>
               <Button onClick={classify}>Submit</Button>
             </ButtonContainer>
           </OptionsContainer>
