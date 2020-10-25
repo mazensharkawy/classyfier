@@ -3,3 +3,4 @@ node_modules
 server/keys.js
 server/localconfig.js
 /Images
+.DS_Store
