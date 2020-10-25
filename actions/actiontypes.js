@@ -9,7 +9,7 @@ export const CHANGE_PASSWORD_FAILED = "CHANGE_PASSWORD_FAILED";
 export const SIGNIN = "SIGNIN";
 export const SIGNIN_FAILED = "SIGNIN_FAILED";
 export const LOGOUT = "LOGOUT";
-export const INIT = "INIT"
+export const INIT = "INIT";
 
 export const SET_CLIENT_FIRST_NAME = "SET_CLIENT_FIRST_NAME";
 export const SET_CLIENT_FAMILY_NAME = "SET_CLIENT_FAMILY_NAME";
@@ -31,3 +31,6 @@ export const RESET_EMAIL = "RESET_EMAIL";
 export const RESET_PASSWORD_ERRORS = "RESET_PASSWORD_ERRORS";
 export const RESET_POSTAL_CODE = "RESET_POSTAL_CODE";
 export const RESET_USER_DATA = "RESET_USER_DATA";
+
+export const LOAD_NEW_IMAGE = "LOAD_NEW_IMAGE";
+export const SET_SELECTED_CLASS = "SET_SELECTED_CLASS";

@@ -1,6 +1,7 @@
 import _ from "lodash";
-import Server from "../src/server";
 import * as actiontypes from "./actiontypes";
+import Router from "next/router";
+import Server from "../src/server";
 
 export const loadProjects = () => {
   return dispatch => {
@@ -26,19 +27,17 @@ export const toClassesPage = () => ({
   type: actiontypes.TO_CLASSES_PAGE
 });
 
-export const setSelectedProject = () => ({
-  type: actiontypes.SET_SELECTED_PROJECT
+export const setSelectedProject = selectedProjectName => ({
+  type: actiontypes.SET_SELECTED_PROJECT,
+  payload: selectedProjectName
 });
 
 export const selectProject = selectedProject => {
   return (dispatch, getState) => {
     const projects = _.get(getState(), "projects.projects");
-    // this.setState({ selectedProject: _.trim(selectedProject) });
-    
     dispatch(setSelectedProject(_.trim(selectedProject)));
     if (_.includes(_.keys(projects), selectedProject)) {
-      // this.setState({ page: CLASSIFYING_PAGE });
-      // redirect
+      Router.push(`/classifier/${selectedProject}`);
     } else dispatch(toClassesPage());
   };
 };

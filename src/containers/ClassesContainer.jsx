@@ -1,5 +1,7 @@
 import _ from "lodash";
+import Router from "next/router";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import Input from "../components/DefaultInput";
 import Server from "../server";
@@ -48,11 +50,18 @@ class ClassesContainer extends Component {
   };
   handleChange = event => this.setState({ newClassName: event.target.value });
   renderClass = classItem => <ClassItem>{classItem}</ClassItem>;
-  createProject = () => {
+  createProject = async () => {
     const { selectedProject } = this.props;
-    const { projectName, classes } = this.state;
-    Server.createProject({ projectName: selectedProject, classes });
-    this.props.next();
+    const { classes } = this.state;
+    try {
+      let response = await Server.createProject({
+        projectName: selectedProject,
+        classes
+      });
+      Router.push(`/classifier/${selectedProject}`);
+    } catch (e) {
+      console.log(e);
+    }
   };
   render() {
     const { newClassName, classes, inputError } = this.state;
@@ -74,4 +83,11 @@ class ClassesContainer extends Component {
   }
 }
 
-export default ClassesContainer;
+const mapStateToProps = ({ projects }) => {
+  return {
+    projects: projects.projects,
+    selectedProject: projects.selectedProject
+  };
+};
+const mapDispatchToProps = {};
+export default connect(mapStateToProps, mapDispatchToProps)(ClassesContainer);
