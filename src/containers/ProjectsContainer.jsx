@@ -56,7 +56,6 @@ class ProjectsContainer extends Component {
     if (!/^[ A-Za-z0-9_@.#&+-]*$/.test(newProjectName)) {
       this.setState({ error: "Invalid character(s)" });
     } else if (!_.includes(projects, newProjectName)) {
-      //   Server.createProject(newProjectName)
       selectProject(newProjectName);
     } else
       this.setState({ error: "Project Name exists. Please try another name" });
@@ -92,7 +91,6 @@ class ProjectsContainer extends Component {
   };
 }
 const mapStateToProps = state => {
-  console.log({ state });
   return { projects: state.projects.projects };
 };
 const mapDispatchToProps = { selectProject };
