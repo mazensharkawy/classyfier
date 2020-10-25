@@ -1,5 +1,5 @@
 import _ from "lodash";
-import * as actiontypes from "./actiontypes";
+import * as actiontypes from "./actionTypes";
 import Router from "next/router";
 import Server from "../src/server";
 

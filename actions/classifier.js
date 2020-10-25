@@ -1,6 +1,6 @@
 import _ from "lodash";
 import Server from "../src/server";
-import * as actionTypes from "./actiontypes";
+import * as actionTypes from "./actionTypes";
 
 export const loadNewImage = payload => {
   return { type: actionTypes.LOAD_NEW_IMAGE, payload };

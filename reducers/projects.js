@@ -1,13 +1,12 @@
 import * as actionTypes from "../actions/actionTypes";
 
-
-const PROJECTS_PAGE = 0
-const CLASSES_PAGE = 1
+const PROJECTS_PAGE = 0;
+const CLASSES_PAGE = 1;
 
 const initialState = {
-    projects: null,
-    selectedProject: null,
-    page: PROJECTS_PAGE,
+  projects: null,
+  selectedProject: null,
+  page: PROJECTS_PAGE
 };
 
 const reducer = (state = initialState, action) => {
