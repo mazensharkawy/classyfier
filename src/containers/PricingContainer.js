@@ -9,11 +9,10 @@ const Container = styled.div`
   align-items: center;
 
   width: 100vw;
-  height: 100%;
 `;
 const CardsContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 100%;
 `;

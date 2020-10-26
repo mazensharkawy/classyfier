@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
-  width: 17%;
+  width: 15vw;
   border-radius: 20px;
   border: thick solid #646567;
+  margin: 0 50px;
 `;
 const Header = styled.div`
   padding-left: 30px;
