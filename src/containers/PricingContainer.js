@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PricingCard from "../components/PricingCard";
 import styled from "styled-components";
 import _ from "lodash";
+import connect from "react-redux";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,37 +29,10 @@ const TitleContainer = styled.div`
     width: 100%;
   }
 `;
-let DATA = [
-  {
-    Period: "30 DAY TRIAL",
-    Price: "00",
-    Members: "free",
-    Projects: "1",
-    Users: "1",
-    Storage: "-",
-    More: "-"
-  },
-  {
-    Period: "Personal",
-    Price: "20",
-    Members: "30",
-    Projects: "30",
-    Users: "Unlimited",
-    Storage: "20GB",
-    More: ""
-  },
-  {
-    Period: "Personal",
-    Price: "30",
-    Members: "Unlimited",
-    Projects: "Unlimited",
-    Users: "Unlimited",
-    Storage: "200GB",
-    More: ""
-  }
-];
+
 class PricingContainer extends Component {
   render() {
+    const { pricingPlans } = this.props;
     return (
       <Container>
         <TitleContainer>
@@ -67,7 +41,7 @@ class PricingContainer extends Component {
         </TitleContainer>
 
         <CardsContainer>
-          {_.map(DATA, (d, index) => (
+          {_.map(pricingPlans, (d, index) => (
             <PricingCard data={d} isCurrent={index == 0} />
           ))}
         </CardsContainer>
@@ -75,4 +49,8 @@ class PricingContainer extends Component {
     );
   }
 }
-export default PricingContainer;
+const mapStateToProps = ({ pricing }) => ({
+  pricingPlans: pricing.pricingPlans
+});
+const mapDispatchToProps = {};
+export default connect(mapStateToProps, mapDispatchToProps)(PricingContainer);
