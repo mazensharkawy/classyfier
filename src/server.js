@@ -37,8 +37,8 @@ export default class Server {
   static requestNewImage(project) {
     return this.get(`${SERVER_URL}/api/request-image/${project}`);
   }
-  static loadPricingplans() {
-    return this.get(``);
+  static loadPricingPlans() {
+    return this.get(`${SERVER_URL}/api/pricings`);
   }
   static getProjectsAvailable() {
     return this.get(`${SERVER_URL}/api/projects`).then(

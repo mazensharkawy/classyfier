@@ -1,9 +1,9 @@
 import React from "react";
 import PricingContainer from "../src/containers/PricingContainer";
-import { loadPricingplans } from "../actions/pricing";
+import { loadPricingPlans } from "../actions/pricing";
 class Pricing extends React.Component {
   static getInitialProps = async ({ reduxStore, req, query, res }) => {
-    reduxStore.dispatch(loadPricingplans());
+    await reduxStore.dispatch(loadPricingPlans());
     return {};
   };
   render() {

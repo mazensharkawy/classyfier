@@ -1,10 +1,11 @@
-import Server from "next/dist/next-server/server/next-server";
 import * as actionTypes from "./actionTypes";
 import Server from "../src/server";
 
-export const loadPricingplans = () => {
+export const loadPricingPlans = () => {
   return dispatch => {
-    return Server.getPricingPlans().then(res => dispatch(setPricing(res)));
+    return Server.loadPricingPlans().then(res => {
+      dispatch(setPricingPlans(res.pricingPlans));
+    });
   };
 };
 export const setPricingPlans = plans => ({

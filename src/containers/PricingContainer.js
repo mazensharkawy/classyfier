@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PricingCard from "../components/PricingCard";
 import styled from "styled-components";
 import _ from "lodash";
-import connect from "react-redux";
+import { connect } from "react-redux";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
