@@ -154,6 +154,38 @@ const discardImage = async (req, res) => {
   });
 };
 
+let pricingPlans = [
+  {
+    Period: "30 DAY TRIAL",
+    Price: "00",
+    Members: "free",
+    Projects: "1",
+    Users: "1",
+    Storage: "-",
+    More: "-"
+  },
+  {
+    Period: "Personal",
+    Price: "20",
+    Members: "30",
+    Projects: "30",
+    Users: "Unlimited",
+    Storage: "20GB",
+    More: ""
+  },
+  {
+    Period: "Personal",
+    Price: "30",
+    Members: "Unlimited",
+    Projects: "Unlimited",
+    Users: "Unlimited",
+    Storage: "200GB",
+    More: ""
+  }
+];
+const getPricingPlans = (req, res) => {
+  res.send({ pricingPlans });
+};
 // const move = (oldPath, newPath, callback) => {
 //   fs.rename(oldPath, newPath, function (err) {
 //     if (err) {
@@ -188,6 +220,7 @@ const discardImage = async (req, res) => {
 router.use("/user", user);
 router.use("/tokens", tokens);
 
+router.get("/pricings", getPricingPlans);
 router.get("/projects", getProjectsAvailable);
 router.post("/create-project", createProject);
 router.get("/request-image/:project", requestImage);
