@@ -44,28 +44,32 @@ export const logout = () => {
   };
 };
 export const signin = ({ email, password, rememberMe = false }) => {
-  return dispatch => {
-    const token = localStorage.getItem("token");
-    if (!token && !(email && password)) return;
-    Server.signin({ email, password, token, remember: rememberMe })
-      .then(response => {
-        if (response && response.token) {
-          localStorage.setItem("token", response.token);
-          dispatch(signinAction(response));
-          // dispatch(setUserInfo(response.user));
-          Router.push("/");
-        } else if (response && response.user) {
-          dispatch(signinAction({ ...response, token }));
-          // dispatch(setUserInfo(response.user));
-        } else {
-          localStorage.removeItem("token");
-          dispatch(loginFailed());
-          !_.includes(router.asPath, "signin") && Router.push("/signin");
-        }
-      })
-      .catch(err => {
-        dispatch(loginFailed());
+  return async dispatch => {
+    // const token = localStorage.getItem("token");
+    // if (!token && !(email && password)) return;
+    // Server.signin({ email, password, token, remember: rememberMe })
+    try {
+      const response = await Server.signin({
+        email,
+        password,
+        remember: rememberMe
       });
+      if (response && response.token) {
+        localStorage.setItem("token", response.token);
+        dispatch(signinAction(response));
+        // dispatch(setUserInfo(response.user));
+        Router.push("/");
+      } else if (response && response.user) {
+        dispatch(signinAction({ ...response, token }));
+        // dispatch(setUserInfo(response.user));
+      } else {
+        localStorage.removeItem("token");
+        dispatch(loginFailed());
+        !_.includes(router.asPath, "signin") && Router.push("/signin");
+      }
+    } catch (err) {
+      dispatch(loginFailed());
+    }
   };
 };
 export const changePassAction = payload => {

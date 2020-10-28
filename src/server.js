@@ -1,9 +1,15 @@
 const dev = process.env.NODE_ENV !== "production";
-const SERVER_URL = dev ? "http://localhost:3000" : "SERVER_URL"
+const SERVER_URL = dev ? "http://localhost:3000" : "SERVER_URL";
 export default class Server {
   static async signout() {
     return this.send({
       url: `${SERVER_URL}/api/auth/signout`
+    });
+  }
+  static async signin({ email, password, token, remember = false }) {
+    return this.send({
+      url: `${SERVER_URL}/api/login`,
+      data: { email, password, remember } 
     });
   }
   static createProject({ projectName, classes }) {
@@ -38,7 +44,9 @@ export default class Server {
     return this.get(`${SERVER_URL}/api/request-image/${project}`);
   }
   static getProjectsAvailable() {
-    return this.get(`${SERVER_URL}/api/projects`).then(({ projects }) => projects);
+    return this.get(`${SERVER_URL}/api/projects`).then(
+      ({ projects }) => projects
+    );
   }
   static send({ url, data }) {
     let payload = {
