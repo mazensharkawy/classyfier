@@ -9,7 +9,7 @@ export default class Server {
   static async signin({ email, password, token, remember = false }) {
     return this.send({
       url: `${SERVER_URL}/api/login`,
-      data: { email, password, remember } 
+      data: { email, password, remember }
     });
   }
   static createProject({ projectName, classes }) {
@@ -50,6 +50,17 @@ export default class Server {
     return this.get(`${SERVER_URL}/api/projects`).then(
       ({ projects }) => projects
     );
+  }
+  static upload(formData) {
+    let url = `${SERVER_URL}/api/upload`;
+    let payload = {
+      headers: {
+        Accept: "application/json"
+      },
+      method: "POST",
+      body: formData
+    };
+    return fetch(url, payload);
   }
   static send({ url, data }) {
     let payload = {

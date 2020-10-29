@@ -5,8 +5,9 @@ import mv from "mv";
 import path from "path";
 import tokens from "./tokens";
 import user from "./user";
-const router = express.Router();
+import { uploader } from "../middleware/upload";
 
+const router = express.Router();
 const dev = process.env.NODE_ENV !== "production";
 
 const ROOT_PATH = path.join(__dirname, "../..");
@@ -186,39 +187,14 @@ let pricingPlans = [
 const getPricingPlans = (req, res) => {
   res.send({ pricingPlans });
 };
-// const move = (oldPath, newPath, callback) => {
-//   fs.rename(oldPath, newPath, function (err) {
-//     if (err) {
-//       if (err.code === "EXDEV") {
-//         copy();
-//       } else {
-//         callback(err);
-//       }
-//       return;
-//     }
-//     callback();
-//   });
-
-// function copy(oldPath, newPath, callback) {
-//   try {
-//     var readStream = fs.createReadStream(oldPath);
-//     var writeStream = fs.createWriteStream(newPath);
-
-//     readStream.on("error", callback);
-//     writeStream.on("error", callback);
-
-//     readStream.on("close", function () {
-//       fs.unlink(oldPath, callback);
-//     });
-//     readStream.pipe(writeStream);
-//   } catch(error) {
-//     console.log(error)
-//     callback("Error moving file")
-//   }
-// }
+const uploadFile = (req, res) => {
+  res.status(200).send();
+};
 
 router.use("/user", user);
 router.use("/tokens", tokens);
+
+router.post("/upload", uploader, uploadFile);
 
 router.get("/pricings", getPricingPlans);
 router.get("/projects", getProjectsAvailable);
