@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { selectProject } from "../../actions";
 import { LARGE_SCREEN_BREAK_POINT, PRIMARY_COLOR } from "../../config";
 import Input from "../components/DefaultInput";
+import UploadContainer from "./UploadContainer";
 
 const Container = styled.div`
   width: 40vw;
@@ -48,7 +49,7 @@ const Error = styled.p`
 `;
 
 class ProjectsContainer extends Component {
-  state = { newProjectName: "", error: null };
+  state = { newProjectName: "", error: null, upload: false };
   handleChange = event => this.setState({ newProjectName: event.target.value });
   createProject = () => {
     const { projects, selectProject } = this.props;
@@ -57,10 +58,11 @@ class ProjectsContainer extends Component {
       this.setState({ error: "Invalid character(s)" });
     } else if (!_.includes(projects, newProjectName)) {
       selectProject(newProjectName);
+      this.setState({ upload: true });
     } else
       this.setState({ error: "Project Name exists. Please try another name" });
   };
-  render = () => {
+  renderProjectsContainer = () => {
     const { selectProject, projects } = this.props;
     const { newProjectName, error } = this.state;
     return (
@@ -88,6 +90,10 @@ class ProjectsContainer extends Component {
         <Error>{error}</Error>
       </Container>
     );
+  };
+  render = () => {
+    const { upload } = this.state;
+    return upload ? <UploadContainer /> : this.renderProjectsContainer();
   };
 }
 const mapStateToProps = state => {
