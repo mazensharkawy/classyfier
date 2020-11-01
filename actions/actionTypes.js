@@ -36,3 +36,8 @@ export const LOAD_NEW_IMAGE = "LOAD_NEW_IMAGE";
 export const SET_SELECTED_CLASS = "SET_SELECTED_CLASS";
 
 export const SET_PRICING_PLANS = "SET_PRICING_PLANS";
+
+export const SET_UPLOADED = "SET_UPLOADED";
+export const SET_UNZIPPED = "SET_UNZIPPED";
+export const SET_PROCESSED = "SET_PROCESSED";
+export const SET_ERROR = "SET_ERROR";
