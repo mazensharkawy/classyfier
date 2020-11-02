@@ -62,6 +62,17 @@ export default class Server {
     };
     return fetch(url, payload);
   }
+  static unzip(fileName) {
+    let payload = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({ fileName })
+    };
+    return fetch(`${SERVER_URL}/api/unzip`, payload);
+  }
   static send({ url, data }) {
     let payload = {
       headers: {

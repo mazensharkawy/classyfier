@@ -13,15 +13,22 @@ const setError = err => {
     payload: err
   };
 };
-export const upload = formData => {
+const setUnzipped = payload => {
+  return {
+    type: actionTypes.SET_UNZIPPED,
+    payload
+  };
+};
+export const uploadAndProcess = (formData, fileName) => {
   return async dispatch => {
+    //upload
     let response = await Server.upload(formData);
     if (response.status === 200) dispatch(setUploaded(true));
     else dispatch(setError("Failed while uploading"));
     //unzip
-    // let response = await Server.unzip();
-    // if (response.status === 200) dispatch(setUnzipped(true));
-    // else dispatch(setError("Failed while unzipping"));
+    response = await Server.unzip(fileName);
+    if (response.status === 200) dispatch(setUnzipped(true));
+    else dispatch(setError("Failed while unzipping"));
     //process
     // let response = await Server.process();
     // if (response.status === 200) dispatch(setProcessed(true));

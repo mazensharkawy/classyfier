@@ -6,6 +6,7 @@ import path from "path";
 import tokens from "./tokens";
 import user from "./user";
 import { uploader } from "../middleware/upload";
+import unzipper from "unzipper";
 
 const router = express.Router();
 const dev = process.env.NODE_ENV !== "production";
@@ -191,10 +192,22 @@ const uploadFile = (req, res) => {
   res.status(200).send();
 };
 
+const unzip = (req, res) => {
+  let { fileName } = req.body;
+  let zipFilePath = `./Images/${fileName}`;
+  fs.createReadStream(zipFilePath).pipe(
+    unzipper
+      .Extract({ path: "./Images/" })
+      .on("close", close => res.status(200).send({}))
+      .on("error", err => res.status(500).send({}))
+  );
+};
+
 router.use("/user", user);
 router.use("/tokens", tokens);
 
 router.post("/upload", uploader, uploadFile);
+router.post("/unzip", unzip);
 
 router.get("/pricings", getPricingPlans);
 router.get("/projects", getProjectsAvailable);
